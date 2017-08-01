@@ -14,7 +14,7 @@ function initMap() {
   	mapTypeControl: false
   });
 
-  //shouldve used classes to create obj's
+  //class to build each location in Everett
   class Location {
     constructor (latitude, longitude, title, address, phone, website, hours) {
       this.position = {
@@ -43,9 +43,7 @@ function initMap() {
       this.marker = new google.maps.Marker({
         position: this.position,
         map: map
-      })
-
-
+      });
     };
   };
 
