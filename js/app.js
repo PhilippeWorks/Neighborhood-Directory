@@ -1,8 +1,8 @@
 var map;
-var markers = [];
+var locations = [];
 
+//google map function
 function initMap() {
-
   var everett = {
   	lat: 44.193342, 
   	lng: -79.934449
@@ -14,14 +14,12 @@ function initMap() {
   	mapTypeControl: false
   });
 
-}
-
   //shouldve used classes to create obj's
   class Location {
     constructor (latitude, longitude, title, address, phone, website, hours) {
       this.position = {
-        lat: latitude, 
-        lng: longitude
+        lat: Number(latitude), 
+        lng: Number(longitude)
         };
       this.title = title;
       this.address = address;
@@ -39,11 +37,17 @@ function initMap() {
           sunday: hours[6]
           };
         }
-        locations.push(this);
-  };
-};
 
-  var locations = [];
+      locations.push(this);
+
+      this.marker = new google.maps.Marker({
+        position: this.position,
+        map: map
+      })
+
+
+    };
+  };
 
   //Location(latitude, longitude, title, address, phone, website, hours)
   var baileysFarm = new Location("44.189938", "-79.944931", "Bailey\"s Potato Farm", "8159 Main Street", "(705) 435-5764");
@@ -57,3 +61,6 @@ function initMap() {
   var church = new Location("44.189507", "-79.940230", "Saint David/s Anglican Church & Cemetery", "6095 County Rd 13");
   var huntClub = new Location("44.202981", "-79.960866", "Slovenian Hunters & Anglers Club", "6436 Concession Rd 4", "(705) 435-6992", "lovska.com", ["10AM-7PM", "10AM-7PM", "10AM-7PM", "10AM-7PM", "10AM-7PM", "10AM-7PM", "10AM-7PM"]);
   var furnitureShop = new Location("44.206402", "-79.953986", "Norbert Visser\"s Furniture Restoration And Finishing Shop", "29 Forest Hill Dr", "(705) 434-0586");
+
+}
+
