@@ -26,3 +26,12 @@ nav {
 	width: 20%;
 }
 
+h1 {
+	position: relative;
+}
+
+#weatherCanvas {
+	position: absolute;
+	width: 20%
+}
+
