@@ -1,7 +1,10 @@
 let map;
 let locations = [];
+let navCard;
+let position;
+const navBar = document.getElementById("navbar")
 
-//google map function
+//google map API function
 function initMap() {
   let everett = {
   	lat: 44.193342, 
@@ -44,6 +47,12 @@ function initMap() {
         position: this.position,
         map: map
       });
+
+      navCard = document.createElement("div");
+      position = document.createTextNode(this.title);
+      navBar.appendChild(navCard);
+      navCard.appendChild(position);
+
     };
   };
 
@@ -61,4 +70,6 @@ function initMap() {
   let furnitureShop = new Location("44.206402", "-79.953986", "Norbert Visser\"s Furniture Restoration And Finishing Shop", "29 Forest Hill Dr", "(705) 434-0586");
   let somerville = new Location("44.179107", "-79.940632", "Somerville Nurseries Inc", "5884 County Rd 13", "(705) 435-6258", "www.krisskringle.com", ["8AM-5PM", "8AM-5PM", "8AM-5PM", "8AM-5PM", "8AM-5PM", "closed", "closed"]);
   let essaEquestrian = new Location("44.182023", "-79.938198", "Essa Equestrian Riding Club", "5947 County Rd 13", "(705) 730-9481", "www.essaequestrians.com");
-}
+  let billiards = new Location("44.1956652", "-79.9190333", "Custom Billiards and Shuffleboards", "7800 Country Rd 5", "(705) 435-7026")
+};
+
