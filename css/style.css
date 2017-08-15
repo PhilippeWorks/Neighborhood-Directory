@@ -1,6 +1,8 @@
  * {
  	box-sizing: border-box;
  	margin: 0 auto;
+ 	border-style: solid;
+ 	border-width: 4px;
  }
 
 /* Optional: Makes the sample page fill the window. */
@@ -29,9 +31,3 @@ nav {
 h1 {
 	position: relative;
 }
-
-#weatherCanvas {
-	position: absolute;
-	width: 20%
-}
-

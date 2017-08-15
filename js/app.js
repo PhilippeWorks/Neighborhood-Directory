@@ -60,4 +60,5 @@ function initMap() {
   let huntClub = new Location("44.202981", "-79.960866", "Slovenian Hunters & Anglers Club", "6436 Concession Rd 4", "(705) 435-6992", "lovska.com", ["10AM-7PM", "10AM-7PM", "10AM-7PM", "10AM-7PM", "10AM-7PM", "10AM-7PM", "10AM-7PM"]);
   let furnitureShop = new Location("44.206402", "-79.953986", "Norbert Visser\"s Furniture Restoration And Finishing Shop", "29 Forest Hill Dr", "(705) 434-0586");
   let somerville = new Location("44.179107", "-79.940632", "Somerville Nurseries Inc", "5884 County Rd 13", "(705) 435-6258", "www.krisskringle.com", ["8AM-5PM", "8AM-5PM", "8AM-5PM", "8AM-5PM", "8AM-5PM", "closed", "closed"]);
-  let essaEquestrian = new location("44.182023", "-79.938198", "Essa Equestrian Riding Club", "5947 County Rd 13", "(705 730-9481", "www.essaequestrians.com")
+  let essaEquestrian = new Location("44.182023", "-79.938198", "Essa Equestrian Riding Club", "5947 County Rd 13", "(705) 730-9481", "www.essaequestrians.com");
+}
