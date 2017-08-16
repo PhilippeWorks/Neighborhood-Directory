@@ -1,4 +1,5 @@
 let weather;
+const navBar = document.getElementById("navbar");
 
 //Requests weather data from openweathermap API
 let weatherRequest = new XMLHttpRequest();
@@ -13,10 +14,10 @@ weatherRequest.send();
 let ctx = document.getElementById("weatherCanvas").getContext("2d")
 ctx.canvas.width = navBar.offsetWidth;
 
-//draws desired weather data on canvas once it is retrieved from API
+//draws desired weather data on canvas once it is retrieved from API, used to allow possibilities for weather animations
 weatherRequest.addEventListener("load", () => {
 	ctx.font = "30px Times New Roman";
 	ctx.textBaseline = "top";
-	ctx.fillText(weather.main.temp, 0, 0);
+	ctx.fillText(weather.main.temp + "°C", 0, 0);
 
 });

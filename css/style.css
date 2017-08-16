@@ -1,8 +1,6 @@
  * {
  	box-sizing: border-box;
  	margin: 0 auto;
- 	border-style: solid;
- 	border-width: 4px;
  }
 
 /* Optional: Makes the sample page fill the window. */
@@ -26,8 +24,16 @@ html, body {
 
 nav {
 	width: 20%;
+	padding: 1% 2% 0 2%;
+
 }
 
 h1 {
 	position: relative;
+}
+
+#locations {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	max-height: 80%
 }

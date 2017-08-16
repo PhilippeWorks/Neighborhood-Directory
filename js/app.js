@@ -2,7 +2,7 @@ let map;
 let locations = [];
 let navCard;
 let position;
-const navBar = document.getElementById("navbar")
+const sideBar = document.getElementById("locations")
 
 //google map API function
 function initMap() {
@@ -48,11 +48,15 @@ function initMap() {
         map: map
       });
 
+      //adds location info to sidebar
       navCard = document.createElement("div");
-      position = document.createTextNode(this.title);
-      navBar.appendChild(navCard);
-      navCard.appendChild(position);
-
+      let nameCard = document.createElement("h2");
+      nameCard.innerHTML = this.title;
+      let addressCard = document.createElement("p");
+      addressCard.innerHTML = this.address + "<br>" + this.phone + "<br>" + this.website + "<br>" + this.hours;
+      sideBar.appendChild(navCard);
+      navCard.appendChild(nameCard);
+      navCard.appendChild(addressCard);
     };
   };
 
