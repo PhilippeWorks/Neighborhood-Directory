@@ -1,5 +1,5 @@
 let weather;
-const navBar = document.getElementById("navheader");
+const headers = document.getElementById("headers");
 let weatherElement = document.createElement("h2");
 
 //Requests weather data from openweathermap API
@@ -11,15 +11,8 @@ weatherRequest.onload = () => {
 };
 weatherRequest.send();
 
-// //creates canvas for API, navbar is defined in app.js
-// let ctx = document.getElementById("weatherCanvas").getContext("2d")
-// ctx.canvas.width = navBar.offsetWidth;
-
-//draws desired weather data on canvas once it is retrieved from API, used to allow possibilities for weather animations
+//uses data retrieved from API
 weatherRequest.addEventListener("load", () => {
-	// ctx.font = "30px Times New Roman";
-	// ctx.textBaseline = "top";
-	// ctx.fillText(weather.main.temp + "°C", 0, 0);
-	weatherElement.innerHTML = weather.main.temp + "°C" + "<br>" + weather.weather[0].description;
-	navheader.appendChild(weatherElement);
+	weatherElement.innerHTML = "currently " + weather.main.temp + "°C" + " with " + weather.weather[0].description;
+	headers.appendChild(weatherElement);
 });

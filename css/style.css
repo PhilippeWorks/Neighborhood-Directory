@@ -1,10 +1,9 @@
  * {
  	box-sizing: border-box;
- 	margin: 0 auto;
+ 	margin: 0;
  	font-family: 'Yrsa', serif;
  }
 
-/* Optional: Makes the sample page fill the window. */
 html, body {
   height: 100%;
   padding: 0;
@@ -18,11 +17,13 @@ html, body {
 
 #navheader {
 	padding: 5% 10% 0 10%;
-	border-bottom: 1px solid;
+	width: 100%;
 }
 
-#navheader h2 {
-	padding: 1% 2% 0 0;
+#headers h2 {
+	padding: 1% 2% 4% 2%;
+	font-size: large;
+	text-align: center;
 }
 
 .row {
@@ -31,19 +32,17 @@ html, body {
 }
 
 nav {
-	display: flex;
 	flex-direction: column;
 	margin: 0;
 	max-height: 100%;
+	max-width: 20%;
+	border-bottom: 1px solid
 }
-
 
 #locations {
 	overflow-y: scroll;
-	display: -webkit-flex;
 	flex-direction: column;
 	margin: 0;
-	flex-shrink: 0;
 }
 
 #locations div {
@@ -52,4 +51,11 @@ nav {
 	padding: 3% 7% 5% 7%;
 	display: flex;
 	flex-direction: column;
+	overflow-x: hidden;
+}
+
+#headers {
+	flex-direction: column;
+	padding: 5% 10% 0 10%;
+	border-bottom: 1px solid;
 }
