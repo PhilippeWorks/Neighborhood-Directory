@@ -20,6 +20,6 @@ weatherRequest.addEventListener("load", () => {
 	// ctx.font = "30px Times New Roman";
 	// ctx.textBaseline = "top";
 	// ctx.fillText(weather.main.temp + "°C", 0, 0);
-	weatherElement.innerHTML = weather.main.temp + "°C";
+	weatherElement.innerHTML = weather.main.temp + "°C" + "<br>" + weather.weather[0].description;
 	navheader.appendChild(weatherElement);
 });

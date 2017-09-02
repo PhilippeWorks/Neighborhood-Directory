@@ -1,6 +1,7 @@
  * {
  	box-sizing: border-box;
  	margin: 0 auto;
+ 	font-family: 'Yrsa', serif;
  }
 
 /* Optional: Makes the sample page fill the window. */
@@ -12,25 +13,43 @@ html, body {
  * element that contains the map. */
 #map {
   height: 100%;
-  width: 80%;
+  flex-grow: 1;
+}
+
+#navheader {
+	padding: 5% 10% 0 10%;
+	border-bottom: 1px solid;
+}
+
+#navheader h2 {
+	padding: 1% 2% 0 0;
 }
 
 .row {
-	width: 100%;
 	height: 100%;
 	display: -webkit-flex;
-    flex-wrap: wrap;
 }
 
 nav {
-	width: 20%;
-	padding: 1% 2% 0 2%;
-	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	max-height: 100%;
 }
 
 
 #locations {
 	overflow-y: scroll;
-	overflow-x: hidden;
-	max-height: 100%;
+	display: -webkit-flex;
+	flex-direction: column;
+	margin: 0;
+	flex-shrink: 0;
+}
+
+#locations div {
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+	padding: 3% 7% 5% 7%;
+	display: flex;
+	flex-direction: column;
 }
