@@ -39,6 +39,11 @@ nav {
 	border-bottom: 1px solid
 }
 
+ul {
+	list-style-type: none;
+	padding-left: 15px;
+}
+
 #locations {
 	overflow-y: scroll;
 	flex-direction: column;
