@@ -15,14 +15,12 @@ function initMap() {
   	zoom: 15,
   	mapTypeControl: false,
     mapTypeId: "hybrid",
-    styles: [{
-    "featureType": "poi",
-    "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    }]
+    styles: [
+      {
+      "featureType": "poi",
+      "stylers": [{"visibility": "off"}]
+      }
+    ]
 
   });
 
@@ -52,49 +50,54 @@ function initMap() {
 
       this.marker = new google.maps.Marker({
         position: this.position,
-        map: map
+        map: map,
+        title: this.title
       });
 
+      this.marker.addListener("click", () => {
+          this.navCard.style.backgroundColor = "grey";
+        }
+      );
+
       //adds location info to sidebar
-      navCard = document.createElement("div");
-      sideBar.appendChild(navCard);
+      this.navCard = document.createElement("div");
+      sideBar.appendChild(this.navCard);
 
-      let nameCard = document.createElement("h3");
-      nameCard.innerHTML = this.title;
-      navCard.appendChild(nameCard);
+      this.nameCard = document.createElement("h3");
+      this.nameCard.innerHTML = this.title;
+      this.navCard.appendChild(this.nameCard);
 
 
-      let infoSection = document.createElement("ul");
-      navCard.appendChild(infoSection);
+      this.infoSection = document.createElement("ul");
+      this.navCard.appendChild(this.infoSection);
 
-      let addressInfo = document.createElement("li");
-      addressInfo.innerHTML = this.address;
-      infoSection.appendChild(addressInfo);
+      this.addressInfo = document.createElement("li");
+      this.addressInfo.innerHTML = this.address;
+      this.infoSection.appendChild(this.addressInfo);
 
 
 
       if (this.phone != undefined) {
-        let phone =  document.createElement("li")
-        phone.innerHTML = this.phone;
-        infoSection.appendChild(phone);
+        this.phoneElement =  document.createElement("li")
+        this.phoneElement.innerHTML = this.phone;
+        this.infoSection.appendChild(this.phoneElement);
         };
 
       if (this.website != undefined) {
-        let websiteInfo = document.createElement("li");
-        let website = document.createElement("a");
-        website.setAttribute("href", this.website);
-        website.innerHTML = this.website;
-        websiteInfo.appendChild(website);
-        infoSection.appendChild(websiteInfo);
+        this.websiteInfo = document.createElement("li");
+        this.websiteElement = document.createElement("a");
+        this.websiteElement.setAttribute("href", this.website);
+        this.websiteElement.innerHTML = this.website;
+        this.websiteInfo.appendChild(this.websiteElement);
+        this.infoSection.appendChild(this.websiteInfo);
       };
 
       if(this.hours != undefined) {
-        let hours = document.createElement("li");
-        console.log(Object.entries(this.hours));
+        this.hoursElement = document.createElement("li");
           Object.entries(this.hours).forEach( ([key, value]) => {
-          hours.innerHTML += " -> " + key + ": " + value + "<br>";
+          this.hoursElement.innerHTML += " -> " + key + ": " + value + "<br>";
         });
-        infoSection.appendChild(hours);
+        this.infoSection.appendChild(this.hoursElement);
       };
 
     };
@@ -103,11 +106,11 @@ function initMap() {
   //Location(latitude, longitude, title, address, phone, website, hours)
   //use the keyord undefined where there's no value but it is necessary to reach a relevant property
   let baileysFarm = new Location("44.189938", "-79.944931", "Bailey\'s Potato Farm", "8159 Main Street", "(705) 435-5764");
-  let rvTentRentals = new Location("44.194520", "-79.942027", "RV There Yet Tent Trailer Rentals", "6218 County Rd 13","(705) 434-9964", "https://www.rvthereyettrailerrentals.com", ["9AM-5PM", "9AM-5PM", "9AM-5PM", "9AM-5PM", "9AM-5PM", "9AM-5PM", "Closed"]);
+  let rvTentRentals = new Location("44.194520", "-79.942027", "RV There Yet Tent Trailer Rentals", "6218 County Rd 13","(705) 434-9964", "https://www.rvthereyettrailerrentals.com", ["9AM-5PM", "9AM-5PM", "9AM-5PM", "9AM-5PM", "9AM-5PM", "9AM-5PM", "closed"]);
   let royalLegion = new Location("44.193604", "-79.941640", "Royal Canadian Legion Branch 508", "6190 County Rd 13", "(705) 435-5769", "http://www.everettlegion.ca");
   let fireStation = new Location("44.195566", "-79.942198", "Adjala-Tosorontio Township Fire Station 1", "6234 County Rd 13", "(705) 434-5055");
   let convenienceStore = new Location("44.191291", "-79.938367", "Everett Variety & Snack", "8097 Main Street", "(705) 435-9616", undefined, ["6AM-10PM", "6AM-10PM", "6AM-10PM", "6AM-10PM", "6AM-10PM", "7AM-10PM", "8AM-10PM",]);
-  let pizzaPlace = new Location("44.191493", "-79.936733", "Pizza Express", "8069 Main Street", "(705) 250-2016", "https://www.facebook.com/PizzaExpressEverett", ["Closed", "Closed", "4PM-8PM", "4PM-8PM", "4PM-8PM", "4PM-8PM", "4PM-8PM"]);
+  let pizzaPlace = new Location("44.191493", "-79.936733", "Pizza Express", "8069 Main Street", "(705) 250-2016", "https://www.facebook.com/PizzaExpressEverett", ["closed", "closed", "4PM-8PM", "4PM-8PM", "4PM-8PM", "4PM-8PM", "4PM-8PM"]);
   let moneyGram = new Location("44.191457", "-79.936608", "MoneyGram", "8069 Main Street", "(705) 435-4537", "http://www.moneygram.ca", ["8:30AM-5PM", "8:30AM-5PM", "8:30AM-5PM", "8:30AM-5PM", "8:30AM-5PM", "9AM-12PM", "24HRS"]); 
   let postOffice = new Location("44.191523", "-79.936581", "Everett Post Office", "8069 Main Street", "(705) 435-4537", undefined, ["8:30AM-5PM", "8:30AM-5PM", "8:30AM-5PM", "8:30AM-5PM", "8:30AM-5PM","9AM-12AM", "9AM-12AM"]);
   let church = new Location("44.189507", "-79.940230", "Saint David's Anglican Church & Cemetery", "6095 County Rd 13");
