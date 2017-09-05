@@ -21,7 +21,6 @@ function initMap() {
       "stylers": [{"visibility": "off"}]
       }
     ]
-
   });
 
   //class to build each location in Everett
@@ -56,6 +55,10 @@ function initMap() {
 
       this.marker.addListener("click", () => {
           this.navCard.style.backgroundColor = "grey";
+          this.navCard.style.position = "absolute";
+          this.navCard.style.top = "0";
+          this.navCard.style.paddingBottom = "200px";
+          map.setCenter(this.marker.getPosition());
         }
       );
 
