@@ -2,6 +2,7 @@ let map;
 let navCard;
 let position;
 const sideBar = document.getElementById("locations");
+let locationPositions = [];
 
 //google map API function
 function initMap() {
@@ -47,28 +48,60 @@ function initMap() {
           };
         };
 
+      this.infowindow = new google.maps.InfoWindow({
+        content: this.title
+      });
+
       this.marker = new google.maps.Marker({
         position: this.position,
         map: map,
         title: this.title
       });
 
-      this.marker.addListener("click", () => {
-          this.navCard.style.backgroundColor = "grey";
-          this.navCard.style.position = "absolute";
-          this.navCard.style.top = "0";
-          this.navCard.style.paddingBottom = "200px";
-          map.setCenter(this.marker.getPosition());
+      locationPositions.push(this.position);
+
+            //resets directory
+      this.checker = () => {
+          map.addListener("center_changed", () => {
+          locationPositions.forEach( (currentValue) => {if(map.getCenter() != currentValue) { sideBar.style.paddingTop = 0} }); 
+          if (this.marker.getPosition()!= map.getCenter()) {
+          this.navCard.style.backgroundColor = "white";
+          this.navCard.style.position = "static";
         }
-      );
+      });
+      this.highlight();
+    };
+
+      //listens for click on marker to pull navCard
+      this.highlight = () => {this.marker.addListener("click", () => {
+            this.infowindow.open(map, this.marker);
+            this.navCard.style.backgroundColor = "grey";
+            this.navCard.style.position = "absolute";
+            this.navCard.style.top = "0";
+            map.setCenter(this.marker.getPosition());
+            sideBar.style.paddingTop = this.navCard.clientHeight + "px";
+            this.checker();
+
+            });
+        }
 
       //adds location info to sidebar
       this.navCard = document.createElement("div");
       sideBar.appendChild(this.navCard);
 
       this.nameCard = document.createElement("h3");
+      this.nameCard.addEventListener('click', () => {
+            this.infowindow.open(map, this.marker);
+            this.navCard.style.backgroundColor = "grey";
+            this.navCard.style.position = "absolute";
+            this.navCard.style.top = "0";
+            map.setCenter(this.marker.getPosition());
+            sideBar.style.paddingTop = this.navCard.clientHeight + "px";
+            this.checker();
+      });
       this.nameCard.innerHTML = this.title;
       this.navCard.appendChild(this.nameCard);
+      
 
 
       this.infoSection = document.createElement("ul");
@@ -81,7 +114,7 @@ function initMap() {
 
 
       if (this.phone != undefined) {
-        this.phoneElement =  document.createElement("li")
+        this.phoneElement =  document.createElement("li");
         this.phoneElement.innerHTML = this.phone;
         this.infoSection.appendChild(this.phoneElement);
         };
@@ -103,6 +136,16 @@ function initMap() {
         this.infoSection.appendChild(this.hoursElement);
       };
 
+      //checks to arrange directory according to marker selected
+     
+
+
+
+         this.highlight();
+
+
+
+  
     };
   };
 
@@ -117,10 +160,10 @@ function initMap() {
   let moneyGram = new Location("44.191457", "-79.936608", "MoneyGram", "8069 Main Street", "(705) 435-4537", "http://www.moneygram.ca", ["8:30AM-5PM", "8:30AM-5PM", "8:30AM-5PM", "8:30AM-5PM", "8:30AM-5PM", "9AM-12PM", "24HRS"]); 
   let postOffice = new Location("44.191523", "-79.936581", "Everett Post Office", "8069 Main Street", "(705) 435-4537", undefined, ["8:30AM-5PM", "8:30AM-5PM", "8:30AM-5PM", "8:30AM-5PM", "8:30AM-5PM","9AM-12AM", "9AM-12AM"]);
   let church = new Location("44.189507", "-79.940230", "Saint David's Anglican Church & Cemetery", "6095 County Rd 13");
-  let huntClub = new Location("44.202981", "-79.960866", "Slovenian Hunters & Anglers Club", "6436 Concession Rd 4", "(705) 435-6992", "http://www.lovska.com", ["10AM-7PM", "10AM-7PM", "10AM-7PM", "10AM-7PM", "10AM-7PM", "10AM-7PM", "10AM-7PM"]);
-  let furnitureShop = new Location("44.206402", "-79.953986", "Norbert Visser's Furniture Restoration And Finishing Shop", "29 Forest Hill Dr", "(705) 434-0586");
+  let huntClub = new Location("44.203305", "-79.961149", "Slovenian Hunters & Anglers Club", "6436 Concession Rd 4", "(705) 435-6992", "http://www.lovska.com", ["10AM-7PM", "10AM-7PM", "10AM-7PM", "10AM-7PM", "10AM-7PM", "10AM-7PM", "10AM-7PM"]);
+  let furnitureShop = new Location("44.206228", "-79.954777", "Norbert Visser's Furniture Restoration And Finishing Shop", "29 Forest Hill Dr", "(705) 434-0586");
   let somerville = new Location("44.179107", "-79.940632", "Somerville Nurseries Inc", "5884 County Rd 13", "(705) 435-6258", "http://www.krisskringle.com", ["8AM-5PM", "8AM-5PM", "8AM-5PM", "8AM-5PM", "8AM-5PM", "closed", "closed"]);
-  let essaEquestrian = new Location("44.182023", "-79.938198", "Essa Equestrian Riding Club", "5947 County Rd 13", "(705) 730-9481", "http://www.essaequestrians.com");
+  let essaEquestrian = new Location("44.183012", "-79.938622", "Essa Equestrian Riding Club", "5947 County Rd 13", "(705) 730-9481", "http://www.essaequestrians.com");
   let billiards = new Location("44.195717", "-79.919240", "Custom Billiards and Shuffleboards", "7800 Country Rd 5", "(705) 435-7026");
 };
 
