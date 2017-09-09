@@ -49,7 +49,7 @@ function initMap() {
         };
 
       this.infowindow = new google.maps.InfoWindow({
-        content: this.title
+        content: this.title,
       });
 
       this.marker = new google.maps.Marker({
@@ -80,6 +80,7 @@ function initMap() {
             this.navCard.style.top = "0";
             map.setCenter(this.marker.getPosition());
             sideBar.style.paddingTop = this.navCard.clientHeight + "px";
+            this.navCard.scrollIntoView(true);
             this.checker();
 
             });
@@ -97,8 +98,10 @@ function initMap() {
             this.navCard.style.top = "0";
             map.setCenter(this.marker.getPosition());
             sideBar.style.paddingTop = this.navCard.clientHeight + "px";
+            this.navCard.scrollIntoView(true);
             this.checker();
       });
+      this.nameCard.addEventListener("mouseover", () => this.nameCard.style.cursor = "pointer");
       this.nameCard.innerHTML = this.title;
       this.navCard.appendChild(this.nameCard);
       
